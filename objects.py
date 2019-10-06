@@ -25,20 +25,19 @@ class Player:
         self.score = int()
     def add_cards(self, card):
         self.cards.append(card)
-        for i in self.cards:
-            if isinstance(i.value, int):
-                self.score = self.score + i.value
-            elif i.value == 'J':
-                self.score = self.score + 2
-            elif i.value == 'Q':
-                self.score = self.score + 3
-            elif i.value == 'K':
-                self.score = self.score + 4
-            else:
-                self.score = self.score + 11
-            print('Итерации score: {}'.format(self.score))
+        if isinstance(self.cards[-1].value, int):
+            self.score = self.score + self.cards[-1].value
+        elif self.cards[-1].value == 'J':
+            self.score = self.score + 2
+        elif self.cards[-1].value == 'Q':
+            self.score = self.score + 3
+        elif self.cards[-1].value == 'K':
+            self.score = self.score + 4
+        else:
+            self.score = self.score + 11
+
     def __repr__(self):
-        return 'Ваш счет: {}'.format(self.score)
+        return 'Ваш счет: {}\nВаша карта: {}'.format(self.score, self.cards[-1])
 class Dealer(Player, Deck):
     def more(self):
         return self.deck.pop()
